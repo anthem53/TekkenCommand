@@ -129,6 +129,12 @@ button {
   grid-template-columns: repeat(3, 36px);
 }
 
+#command_cell #command_cell_content #command_cell_div3 {
+	grid-template-columns: repeat(5, 36px);
+	grid-column-start: 1;
+	grid-column-end: 3;
+}
+
 #misc_cell {
   background: #028090;
   text-align: center;
@@ -451,6 +457,11 @@ button {
   #command_cell #command_cell_content #command_cell_div2 {
     grid-template-columns: repeat(6, 1fr);
   }
+  
+  #command_cell #command_cell_content #command_cell_div3 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
   
   .header_title {
     display: none;
