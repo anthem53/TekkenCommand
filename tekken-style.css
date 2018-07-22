@@ -236,11 +236,10 @@ button {
 }
 
 .inputTitle {
-  display: block;
-  width: 100%;
   font-family: 'Do Hyeon', sans-serif;
   background: none;
   border: none;
+  display: inline-block;
   font-size: 25px;
 }
 
