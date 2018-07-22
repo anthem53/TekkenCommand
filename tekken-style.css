@@ -239,7 +239,8 @@ button {
   font-family: 'Do Hyeon', sans-serif;
   background: none;
   border: none;
-  display: inline-block;
+  display: block;
+  width: 100%;
   font-size: 25px;
 }
 
