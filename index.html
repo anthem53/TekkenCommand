@@ -70,6 +70,7 @@
           <button class="web_control_button tooltip" title="엔터" onclick="addTag(commands, 'br'); var span = addTag(commands, 'span'); span.className = 'highlighter'; setTimeout( function(){ span.style.display = 'none'; }, 300); ">줄 바꿈<span class="tooltip-text">줄 바꿈<br>(단축키: 엔터)</span></button>
           <button class="web_control_button" onclick="commands.innerText = '';">전체지움</button>
           <button class="web_control_button tooltip" onclick="var childList = document.getElementById('commands').childNodes; var lastChild = childList[childList.length - 1]; lastChild.parentNode.removeChild(lastChild);">지우기<span class="tooltip-text">지움<br>(단축키: 백스페이스/딜리트)</span></button>
+          <button class="web_control_button tooltip" onclick="var blinkCursor = document.createElement('span'); blinkCursor.setAttribute('class', 'blinkCursor'); $('#commands').children().eq(1).after(blinkCursor);">끼워넣기</button>
         </div>
       </div>
       <div class="hidden_header" id="hidden_header_id">
@@ -80,9 +81,7 @@
 
   <div id="result_cell">
     <p class="output_title" id="output_title_id">출력 창</p>
-    <div id="commands">
-
-    </div>
+    <div id="commands"></div>
   </div>
 
   <script>
@@ -153,8 +152,8 @@
     addImageButton(command2, "./images/c8.png", "cmd tooltip", null, null, "왼손+오른손+왼발");
     addImageButton(command2, "./images/c12.png", "cmd tooltip", null, null, "왼손+오른손+오른발");
     addImageButton(command2, "./images/c14.png", "cmd tooltip", null, null, "왼손+왼발+오른발");
-	addImageButton(command2, "./images/c15.png", "cmd tooltip", null, null, "오른손+왼발+오른발");
-	addImageButton(command2, "./images/c16.png", "cmd tooltip", null, null, "왼손+오른손+왼발+오른발");
+  	addImageButton(command2, "./images/c15.png", "cmd tooltip", null, null, "오른손+왼발+오른발");
+  	addImageButton(command2, "./images/c16.png", "cmd tooltip", null, null, "왼손+오른손+왼발+오른발");
 
     // 기타 버튼
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "▶", "다음\n(단축키: 스페이스바)").style.display = "inline-block";
@@ -167,7 +166,7 @@
 //     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "_", "잠시 유지");
 
     // 기타 버튼 2
-    var miscList = ["스크류", "대시", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "흘리기", "횡캔", "바운드", "태그"];
+    var miscList = ["스크류", "대시", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "흘리기", "횡캔", "횡신", "횡보", "바운드", "태그"];
     for (var i in miscList) {
       var btn = addImageButton(miscCell, null, "misc_button tooltip", null, miscList[i], null);
       i == 0 || i == 1 ? btn.style.display = "inline-block" : null;
@@ -275,12 +274,22 @@
     }
 
     function onLoadFunction() {
-      var url = new URL(document.URL);
-      var params = url.searchParams.get("commands");
-
-      if(params != null) {
-
-      }
+      // var url = new URL(document.URL);
+      // var params = url.searchParams.get("commands");
+      //
+      // if(params != null) {
+      //   var paramsList = params.split("/");
+      //
+      //   for(var i in paramsList) {
+      //     var par = paramsList[i].split("-");
+      //     var url = "./images/" + par[0] + ".png";
+      //     var className = par[1];
+      //     var id = par[2];
+      //     var text = par[3];
+      //
+      //     drawCommand(url, className, id, text);
+      //   }
+      // }
     }
 
 

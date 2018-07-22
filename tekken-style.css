@@ -192,6 +192,30 @@ button {
 #commands {
   height: auto;
   margin: 20px;
+  margin-bottom: 0;
+  display: inline-block;
+  min-height: 36px;
+}
+
+.blinkCursor {
+  display: inline-block;
+  position: absolute;
+  height: 36px;
+  width: 3px;
+  background: #ccc;
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }
 
 .misc_button {
@@ -372,6 +396,7 @@ button {
   left: 50%;
   margin-left: -60px;
   font-size: 13px;
+  pointer-events: none;
 }
 
 .tooltip .tooltip-text::after {
