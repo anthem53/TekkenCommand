@@ -67,9 +67,9 @@
         </p>
         <div class="cell_child" id="web_control_cell_content">
           <button class="web_control_button" onclick="if(document.getElementById('commands').childNodes.length != 0) addTag(commands, 'br'); var btn = addTag(commands, 'input', 'inputTitle'); btn.focus(); btn.onclick = function() { btn.parentNode.removeChild(btn); }; addTag(commands, 'br');">글 삽입</button>
-          <button class="web_control_button" title="엔터(단축키: 엔터)" onclick="addTag(commands, 'br'); var span = addTag(commands, 'span'); span.className = 'highlighter'; setTimeout( function(){ span.style.display = 'none'; }, 300); ">줄 바꿈(엔터)</button>
+          <button class="web_control_button tooltip" title="엔터" onclick="addTag(commands, 'br'); var span = addTag(commands, 'span'); span.className = 'highlighter'; setTimeout( function(){ span.style.display = 'none'; }, 300); ">줄 바꿈<span class="tooltip-text">줄 바꿈<br>(단축키: 엔터)</span></button>
           <button class="web_control_button" onclick="commands.innerText = '';">전체지움</button>
-          <button class="web_control_button" onclick="var childList = document.getElementById('commands').childNodes; var lastChild = childList[childList.length - 1]; lastChild.parentNode.removeChild(lastChild);">지우기</button>
+          <button class="web_control_button tooltip" onclick="var childList = document.getElementById('commands').childNodes; var lastChild = childList[childList.length - 1]; lastChild.parentNode.removeChild(lastChild);">지우기<span class="tooltip-text">지움<br>(단축키: 백스페이스/딜리트)</span></button>
         </div>
       </div>
       <div class="hidden_header" id="hidden_header_id">
@@ -166,7 +166,7 @@
     var miscList = ["스크류", "대시", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "흘리기", "횡캔"];
     for (var i in miscList) {
       var btn = addImageButton(miscCell, null, "misc_button tooltip", null, miscList[i], null);
-      i == 0 ? btn.style.display = "inline-block" : null;
+      i == 0 || i == 1 ? btn.style.display = "inline-block" : null;
     }
     
     // 펼치기 버튼(기타 셀)
@@ -321,6 +321,12 @@
           return false;
         case 13: // 엔터
           addTag(commands, "br");
+          return;
+        case 8:
+        case 46:
+          var childList = commands.childNodes;
+          var lastChild = childList[childList.length - 1];
+          lastChild.parentNode.removeChild(lastChild);
           return;
         default:
           return;

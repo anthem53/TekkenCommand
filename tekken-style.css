@@ -236,12 +236,14 @@ button {
 }
 
 .inputTitle {
+  display: block;
+  width: 100%;
   font-family: 'Do Hyeon', sans-serif;
   background: none;
   border: none;
-  display: block;
-  width: 100%;
-  font-size: 25px;
+  font-size: 40px;
+  margin-bottom: -20px;
+  margin-top: 10px;
 }
 
 .inputTitle:focus {
@@ -459,7 +461,7 @@ button {
   }
 
   #web_control_cell #web_control_cell_content {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 5px;
   }
   
@@ -473,6 +475,10 @@ button {
   
   .output_title {
     font-size: 30px;
+  }
+  
+  .inputTitle {
+    font-size: 20px;
   }
 }
 
