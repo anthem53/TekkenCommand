@@ -197,12 +197,14 @@ button {
   min-height: 36px;
 }
 
-.blinkCursor {
+.blink_cursor {
   display: inline-block;
-  position: absolute;
+  position: relative;
   height: 36px;
   width: 3px;
-  background: #ccc;
+  background: black;
+  margin-right: 2px;
+  vertical-align: bottom;
   animation: blink-animation 1s steps(5, start) infinite;
   -webkit-animation: blink-animation 1s steps(5, start) infinite;
 }
@@ -216,6 +218,11 @@ button {
   to {
     visibility: hidden;
   }
+}
+
+.overlay {
+  background: #333 !important;
+  color: #aaa !important;
 }
 
 .misc_button {
@@ -260,7 +267,7 @@ button {
   border: solid 1px black;
 }
 
-.inputTitle {
+.input_title {
   display: block;
   width: 100%;
   font-family: 'Do Hyeon', sans-serif;
@@ -271,7 +278,7 @@ button {
   margin-top: 10px;
 }
 
-.inputTitle:focus {
+.input_title:focus {
   font-family: sans-serif;
   background: white;
   border: dashed 2px black;
@@ -496,7 +503,7 @@ button {
     font-size: 30px;
   }
 
-  .inputTitle {
+  .input_title {
     font-size: 20px;
   }
 }
