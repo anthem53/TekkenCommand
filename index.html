@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="./plug-in/jquery-3.3.1.js"></script>
 </head>
-<body id="body">
+<body id="body" onload="onLoadFunction();">
   <div class="header" id="stickyHeader">
     <button class="minimize" id="minimize_button">
       ▲
@@ -35,9 +35,6 @@
 
           </div>
           <div class="command_cell_div" id="command_cell_div2">
-
-          </div>
-          <div class="command_cell_div" id="command_cell_div3">
 
           </div>
         </div>
@@ -97,7 +94,6 @@
     var commands = document.getElementById("commands");
     var command1 = document.getElementById("command_cell_div1");
     var command2 = document.getElementById("command_cell_div2");
-	var command3 = document.getElementById("command_cell_div3");
     var webContent = document.getElementById("web_control_cell_content");
     var minimizeButton = document.getElementById("minimize_button");
 
@@ -154,11 +150,11 @@
     addImageButton(command2, "./images/c4.png", "cmd tooltip", null, null, "양손");
     addImageButton(command2, "./images/c13.png", "cmd tooltip", null, null, "양발");
     addImageButton(command2, "./images/c10.png", "cmd tooltip", null, null, "왼손+오른발");
-    addImageButton(command3, "./images/c8.png", "cmd tooltip", null, null, "왼손+오른손+왼발");
-    addImageButton(command3, "./images/c12.png", "cmd tooltip", null, null, "왼손+오른손+오른발");
-    addImageButton(command3, "./images/c14.png", "cmd tooltip", null, null, "왼손+왼발+오른발");
-	addImageButton(command3, "./images/c15.png", "cmd tooltip", null, null, "오른손+왼발+오른발");
-	addImageButton(command3, "./images/c16.png", "cmd tooltip", null, null, "왼손+오른손+왼발+오른발");
+    addImageButton(command2, "./images/c8.png", "cmd tooltip", null, null, "왼손+오른손+왼발");
+    addImageButton(command2, "./images/c12.png", "cmd tooltip", null, null, "왼손+오른손+오른발");
+    addImageButton(command2, "./images/c14.png", "cmd tooltip", null, null, "왼손+왼발+오른발");
+	addImageButton(command2, "./images/c15.png", "cmd tooltip", null, null, "오른손+왼발+오른발");
+	addImageButton(command2, "./images/c16.png", "cmd tooltip", null, null, "왼손+오른손+왼발+오른발");
 
     // 기타 버튼
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "▶", "다음\n(단축키: 스페이스바)").style.display = "inline-block";
@@ -171,7 +167,7 @@
 //     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "_", "잠시 유지");
 
     // 기타 버튼 2
-    var miscList = ["스크류", "대시", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "흘리기", "횡캔"];
+    var miscList = ["스크류", "대시", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "흘리기", "횡캔", "바운드", "태그"];
     for (var i in miscList) {
       var btn = addImageButton(miscCell, null, "misc_button tooltip", null, miscList[i], null);
       i == 0 || i == 1 ? btn.style.display = "inline-block" : null;
@@ -252,17 +248,21 @@
       cell.appendChild(btn);
 
       btn.onclick = function() { // 버튼 클릭하면 result 셀에 복사
-        var target = document.getElementById("inputTarget") == null ? commands : document.getElementById("inputTarget"); // 누적 버튼 구현을 위함
-
-        var copy = addImageButton(target, url, className, id, text, "클릭하여 삭제");
-        copy.onclick = function() { copy.parentNode.removeChild(copy); }; // 복사된 버튼은 누르면 자기 자신을 삭제
-
-        if(target != commands) {
-          target.id = null;
-        }
+        drawCommand(url, className, id, text);
       };
 
       return btn;
+    }
+
+    function drawCommand(url, className, id, text) {
+      var target = document.getElementById("inputTarget") == null ? commands : document.getElementById("inputTarget"); // 누적. 실입력 버튼 구현을 위함
+
+      var copy = addImageButton(target, url, className, id, text, "클릭하여 삭제");
+      copy.onclick = function() { copy.parentNode.removeChild(copy); }; // 복사된 버튼은 누르면 자기 자신을 삭제
+
+      if(target != commands) {
+        target.id = null;
+      }
     }
 
     function addTag(cell, tag, className, id) {
@@ -272,6 +272,15 @@
       cell.appendChild(element);
 
       return element;
+    }
+
+    function onLoadFunction() {
+      var url = new URL(document.URL);
+      var params = url.searchParams.get("commands");
+
+      if(params != null) {
+
+      }
     }
 
 
@@ -313,16 +322,16 @@
           url = "./images/w9.png";
           break;
         case 81: // Q
-          url = "./images/lp.png";
+          url = "./images/c2.png";
           break;
         case 87: // W
-          url = "./images/rp.png";
+          url = "./images/c3.png";
           break;
         case 65: // A
-          url = "./images/lk.png";
+          url = "./images/c5.png";
           break;
         case 83: // S
-          url = "./images/rk.png";
+          url = "./images/c9.png";
           break;
         case 32: // 스페이스바
           addImageButton(commands, null, "misc_button no_background tooltip", null, "▶", "클릭하여 삭제").onclick = function() { this.parentNode.removeChild(this); };
@@ -340,14 +349,7 @@
           return;
       }
 
-      var target = document.getElementById("inputTarget") == null ? commands : document.getElementById("inputTarget"); // 누적 버튼 구현을 위함
-
-      var copy = addImageButton(target, url, "cmd tooltip", null, null, "클릭하여 삭제");
-      copy.onclick = function() { copy.parentNode.removeChild(copy); }; // 복사된 버튼은 누르면 자기 자신을 삭제
-
-      if(target != commands) {
-        target.id = null;
-      }
+      drawCommand(url, "cmd tooltip", null, null, "클릭하여 삭제");
     });
   </script>
 </body>

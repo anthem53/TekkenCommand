@@ -116,7 +116,8 @@ button {
 
 #command_cell #command_cell_content {
   display: grid;
-  grid-template-columns: 3fr 4fr;
+  grid-template-columns: 2fr 5fr;
+  grid-column-gap: 5px;
 }
 
 #command_cell #command_cell_content #command_cell_div1 {
@@ -126,13 +127,7 @@ button {
 
 #command_cell #command_cell_content #command_cell_div2 {
   display: grid;
-  grid-template-columns: repeat(3, 36px);
-}
-
-#command_cell #command_cell_content #command_cell_div3 {
-	grid-template-columns: repeat(5, 36px);
-	grid-column-start: 1;
-	grid-column-end: 3;
+  grid-template-columns: repeat(5, 36px);
 }
 
 #misc_cell {
@@ -351,7 +346,7 @@ button {
 
 #inputTarget .actual_input_button {
   margin-left: 2px;
-  
+
 }
 
 
@@ -437,36 +432,24 @@ button {
   #web_control_cell {
     border-radius: 0 0 20px 20px;
   }
-  
+
   .grid_class {
     grid-template-columns: 1fr;
   }
-  
+
   .expand {
     display: inline-block;
   }
-  
+
   #misc_cell_content>button:not(.expand) {
     display: none;
   }
-  
-  #command_cell #command_cell_content #command_cell_div1 {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  
-  #command_cell #command_cell_content #command_cell_div2 {
-    grid-template-columns: repeat(6, 1fr);
-  }
-  
-  #command_cell #command_cell_content #command_cell_div3 {
-    grid-template-columns: repeat(5, 1fr);
-  }
-  
-  
+
+
   .header_title {
     display: none;
   }
-  
+
   #web_control_cell_content {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -475,19 +458,19 @@ button {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 5px;
   }
-  
+
   .minimize {
     display: block;
   }
-  
+
   .tooltip:hover .tooltip-text {
     visibility: hidden;
   }
-  
+
   .output_title {
     font-size: 30px;
   }
-  
+
   .inputTitle {
     font-size: 20px;
   }
@@ -498,15 +481,15 @@ button {
     width: 27px;
     height: 27px;
   }
-  
+
   #white_cell #white_cell_content {
     grid-template-columns: repeat(3, 27px);
   }
-  
+
   #white_cell #black_cell_content {
     grid-template-columns: repeat(3, 27px);
   }
-  
+
   .bgColor {
     width: 30px;
   }
