@@ -84,11 +84,11 @@
     <div id="commands"></div>
   </div>
 
-  <div class="arrow-for-insert-mode">
-    <button class="arrow-button" onclick="this.trigger(jQuery.Event( "keypress", { keyCode: 37 } ));">
+  <div class="arrow-div">
+    <button class="arrow-button" onclick="moveCursor('left');">
       ◀
     </button>
-    <button class="arrow-button" onclick="this.trigger(jQuery.Event( "keypress", { keyCode: 39 } ));">
+    <button class="arrow-button" onclick="moveCursor('right');">
       ▶
     </button>
   </div>
@@ -229,12 +229,13 @@
       } else { // 일반모드일 때
         $("#commands").append(container);
       }
-      var actualInputTitleContainer = container.append("<div class='actual-input-title-container' id='actualInputTitleContainer'>");
-      var actualInputText1 = actualInputTitleContainer.append("<p class='actual-input-text'>실입력</p>");
+      var actualInputTitleContainer = $("<div class='actual-input-title-container' id='actualInputTitleContainer'>");
+      container.append(actualInputTitleContainer);
+      var actualInputText1 = $(".actual-input-title-container").append("<p class='actual-input-text'>실입력</p>");
       var actualInputText2 = actualInputTitleContainer.append("<span class='actual-input-text'>(</span>");
       var actualInputButtonContainer = actualInputTitleContainer.append("<span class='actual-input-button' id='inputTarget'></span>");
       var actualInputText3 = actualInputTitleContainer.append("<span class='actual-input-text'>)</span>");
-      var inputResultButtonContainer = actualInputTitleContainer.append("<span class='input-result-button-container' id='inputTarget'></span>");
+      var inputResultButtonContainer = container.append("<span class='input-result-button-container' id='inputTarget'></span>");
 
       actualInputText1.css("font-size", "10px");
 
@@ -341,7 +342,6 @@
     }
 
     function erase() {
-      console.log(afterElement);
       if(isModifingMode) {
         $("#commands>*:not(.blink_cursor)").eq(afterElement--).remove();
       } else {
@@ -365,6 +365,8 @@
         $(".blink_cursor").remove();
         isModifingMode = false;
       }
+
+      $(".arrow-div").css("display", "block");
     }
 
     function moveCursor(direction) {

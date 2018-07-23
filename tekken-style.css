@@ -2,6 +2,9 @@
 
 :root {
   --bg-color: #F0F3BD;
+  --commands-button-size: 36px;
+  --accrue-font-size: 16px;
+  --actual-input-font-size: 10px;
 }
 
 body, button, input, span, p, div {
@@ -102,12 +105,12 @@ button {
 
 #white_cell #white_cell_content {
   display: grid;
-  grid-template-columns: repeat(3, 36px);
+  grid-template-columns: repeat(3, var(--commands-button-size));
 }
 
 #black_cell_content {
   display: grid;
-  grid-template-columns: repeat(3, 36px);
+  grid-template-columns: repeat(3, var(--commands-button-size));
 }
 
 #command_cell {
@@ -122,12 +125,12 @@ button {
 
 #command_cell #command_cell_content #command_cell_div1 {
   display: grid;
-  grid-template-columns: repeat(2, 36px);
+  grid-template-columns: repeat(2, var(--commands-button-size));
 }
 
 #command_cell #command_cell_content #command_cell_div2 {
   display: grid;
-  grid-template-columns: repeat(5, 36px);
+  grid-template-columns: repeat(5, var(--commands-button-size));
 }
 
 #misc_cell {
@@ -165,8 +168,8 @@ button {
   background-size: 100%;
   cursor: pointer;
   border: none;
-  width: 36px;
-  height: 36px;
+  width: var(--commands-button-size);
+  height: var(--commands-button-size);
   vertical-align: middle;
 }
 
@@ -194,12 +197,12 @@ button {
   margin: 20px;
   margin-bottom: 0;
   display: inline-block;
-  min-height: 36px;
+  min-height: var(--commands-button-size);
   padding: 0;
 }
 
 #commands>br {
-  line-height: 36px;
+  line-height: var(--commands-button-size);
 }
 
 #commands * { /* 이걸 안 하면 위의 br line-height 때문에 높이가 큰 태그(누적이나 실입력 등)를 넣었을 때 같은 중에 있는 일반 버튼들이 붕 뜨게 됨 */
@@ -209,7 +212,7 @@ button {
 .blink_cursor {
   display: inline-block;
   position: relative;
-  height: 36px;
+  height: var(--commands-button-size);
   width: 3px;
   background: black;
   margin-right: 2px;
@@ -305,8 +308,8 @@ button {
 
 
 .accrue-container {
-  width: 36px;
-  height: 55px;
+  width: var(--commands-button-size);
+  height: calc(var(--commands-button-size) + var(--accrue-font-size) + 3px); /* 버튼 크기 + 글씨 크기 + 여백 값 */
   display: inline-block;
   vertical-align: bottom;
 }
@@ -316,8 +319,8 @@ button {
 }
 
 .accrue-button-container {
-  width: 36px;
-  height: 36px;
+  width: var(--commands-button-size);
+  height: var(--commands-button-size);
   display: inline-block;
   border: none;
 }
@@ -335,13 +338,14 @@ button {
   margin: 0;
   padding: 0;
   font-weight: bold;
+  font-size: var(--accrue-font-size);
 }
 
 
 .actual-input-container {
   position: relative;
-  width: 36px;
-  height: calc(36px + 19px + 10px);
+  width: var(--commands-button-size);
+  height: calc(var(--commands-button-size) + 19px + var(--actual-input-font-size));
   display: inline-block;
   border: none;
   text-align: center;
@@ -358,6 +362,7 @@ button {
 .actual-input-text {
   vertical-align: top;
   font-weight: bold;
+  font-size: var(--actual-input-font-size);
   margin: 0 0 -2px 0;
   padding: 0;
 }
@@ -379,8 +384,8 @@ button {
   bottom: 0 !important;
   left: 0 !important;
   top: initial !important;
-  width: 36px;
-  height: 36px;
+  width: var(--commands-button-size);
+  height: var(--commands-button-size);
   display: inline-block;
 }
 
@@ -455,13 +460,31 @@ button {
   display: inline-block !important;
 }
 
-.highlighter {
-  display: block;
-  background: ForestGreen;
-  width: 100%;
-  height: 36px;
-  opacity: 0.3;
+.arrow-div {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
+
+.arrow-button {
+  font-family: 'Nanum Gothic', sans-serif;
+  background: #323642;
+  color: #F4F5F2;
+  font: 20px bold;
+  width: 50px;
+  border: none;
+  padding: 3px 10px;
+  margin: 0 3 px;
+  -webkit-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+}
+
+
+
 
 
 /* 반응형 웹 */
@@ -518,12 +541,13 @@ button {
 }
 
 @media(max-width: 400px) {
-  .cmd {
-    width: 27px;
-    height: 27px;
+  :root {
+    --commands-button-size: 27px;
+    --accrue-font-size: 10px;
+    --actual-input-font-size: 5px;
   }
 
-  #commands>br {
+  #commands > br {
     line-height: 27px;
   }
 
