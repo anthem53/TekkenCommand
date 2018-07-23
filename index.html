@@ -84,6 +84,15 @@
     <div id="commands"></div>
   </div>
 
+  <div class="arrow-for-insert-mode">
+    <button class="arrow-button" onclick="this.trigger(jQuery.Event( "keypress", { keyCode: 37 } ));">
+      ◀
+    </button>
+    <button class="arrow-button" onclick="this.trigger(jQuery.Event( "keypress", { keyCode: 39 } ));">
+      ▶
+    </button>
+  </div>
+
   <script>
     var whiteCell = document.getElementById("white_cell_content");
     var blackCell = document.getElementById("black_cell_content");

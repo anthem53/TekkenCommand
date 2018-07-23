@@ -198,7 +198,7 @@ button {
   padding: 0;
 }
 
-#commands br {
+#commands>br {
   line-height: 36px;
 }
 
@@ -521,6 +521,10 @@ button {
   .cmd {
     width: 27px;
     height: 27px;
+  }
+
+  #commands>br {
+    line-height: 27px;
   }
 
   #white_cell #white_cell_content {
