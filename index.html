@@ -68,9 +68,9 @@
         <div class="cell_child" id="web_control_cell_content">
           <button class="web_control_button" onclick="insertText();">글 삽입</button>
           <button class="web_control_button tooltip" title="엔터" onclick="enter();">줄 바꿈<span class="tooltip-text">줄 바꿈<br>(단축키: 엔터)</span></button>
-          <button class="web_control_button" onclick="eraseAll();">전체지움</button>
+          <button class="web_control_button" onclick="eraseAll();">전체 지움</button>
           <button class="web_control_button tooltip" onclick="erase();">지우기<span class="tooltip-text">지움<br>(단축키: 백스페이스/딜리트)</span></button>
-          <button class="web_control_button tooltip" onclick="insertMode();" id="insertButton">끼워넣기</button>
+          <button class="web_control_button tooltip" onclick="modifingMode();" id="modifingButton">수정 모드<span class="tooltip-text">중간에 버튼을 추가할 수 있습니다.</span></button>
         </div>
       </div>
       <div class="hidden_header" id="hidden_header_id">
@@ -244,7 +244,7 @@
 
         btn.appendChild(spanTag);
       }
-      if(isInsertMode && cell == commands) { // 삽입모드일 때
+      if(isModifingMode && cell == commands) { // 삽입모드일 때
         $("#commands>*:not(.blink_cursor)").eq(afterElement++).after(btn);
       } else { // 일반모드일 때
         cell.appendChild(btn);
@@ -299,7 +299,7 @@
     function insertText() {
       var input = $("<input class='input_title'>");
 
-      if(isInsertMode) {
+      if(isModifingMode) {
         if(!$("#commands").is(":empty")) enter();
         $("#commands>*:not(.blink_cursor)").eq(afterElement++).after(input);
         enter();
@@ -323,7 +323,7 @@
     function enter() {
       var br = $("<br>");
 
-      if(isInsertMode) {
+      if(isModifingMode) {
         $("#commands>*:not(.blink_cursor)").eq(afterElement++).after(br);
       } else {
         $("#commands").append(br);
@@ -336,33 +336,33 @@
 
     function erase() {
       console.log(afterElement);
-      if(isInsertMode) {
+      if(isModifingMode) {
         $("#commands>*:not(.blink_cursor)").eq(afterElement--).remove();
       } else {
         $("#commands>*:not(.blink_cursor)").last().remove();
       }
     }
 
-    var isInsertMode = false;
+    var isModifingMode = false;
     var afterElement = 0;
     var blinkCursor;
-    function insertMode() {
-      if(!isInsertMode) {
+    function modifingMode() {
+      if(!isModifingMode) {
         blinkCursor = document.createElement('span');
         blinkCursor.className = 'blink_cursor';
         $("#commands>*:not(.blink_cursor)").last().after(blinkCursor);
-        isInsertMode = true;
+        isModifingMode = true;
         afterElement = $("#commands>*:not(.blink_cursor)").length - 1;
-        $("#insertButton").addClass("overlay");
+        $("#modifingButton").addClass("overlay");
       } else {
-        $("#insertButton").removeClass("overlay");
+        $("#modifingButton").removeClass("overlay");
         $(".blink_cursor").remove();
-        isInsertMode = false;
+        isModifingMode = false;
       }
     }
 
     function moveCursor(direction) {
-      if(!isInsertMode) return;
+      if(!isModifingMode) return;
 
       if(direction == "left" && afterElement > 0) {
         afterElement -= 1;
