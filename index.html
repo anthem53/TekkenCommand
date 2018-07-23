@@ -198,36 +198,40 @@
 
     // 누적 버튼 구현
     accrueButton.onclick = function() {
-      var container = addTag(commands, "span", "accrue_container");
-      var accrueText = addTag(container, "p", "accrue_text", null);
-      var inputTarget = addTag(container, "span", "accrue_button_container", "inputTarget");
-
-      accrueText.innerText = "누적";
-
-      container.onclick = function() {
-        this.parentNode.removeChild(this);
+      var container = $("<span class='accrue-container'></span>");
+      if(isModifingMode) { // 수정모드일 때
+        $("#commands>*:not(.blink_cursor)").eq(afterElement++).after(container);
+      } else { // 일반모드일 때
+        $("#commands").append(container);
       }
-    };
+      var accrueText = container.append("<p class='accrue-text'>누적</p>");
+      var inputTarget = container.append("<span class='accrue-button-container' id='inputTarget'></span>");
+
+      container.click(function() {
+        this.remove();
+      });
+    }
 
     // 실입력 버튼 구현
     actualInput.onclick = function() {
-      var container = addTag(commands, "span", "actual_input_container");
-      var actualInputTitleContainer = addTag(container, "div", "actual_input_title_container", "actualInputTitleContainer");
-      var actualInputText1 = addTag(actualInputTitleContainer, "p", "actual_input_text", null);
-      var actualInputText2 = addTag(actualInputTitleContainer, "span", "actual_input_text", null);
-      var actualInputButtonContainer = addTag(actualInputTitleContainer, "span", "actual_input_button", "inputTarget");
-      var actualInputText3 = addTag(actualInputTitleContainer, "span", "actual_input_text", null);
-      var inputResultButtonContainer = addTag(container, "span", "input_result_button_container", "inputTarget");
-
-      actualInputText1.style.fontSize = "10px";
-
-      actualInputText1.innerText = "실입력";
-      actualInputText2.innerText = "(";
-      actualInputText3.innerText = ")";
-
-      container.onclick = function() {
-        this.parentNode.removeChild(this);
+      var container = $("<span class='actual-input-container'></span>");
+      if(isModifingMode) { // 수정모드일 때
+        $("#commands>*:not(.blink_cursor)").eq(afterElement++).after(container);
+      } else { // 일반모드일 때
+        $("#commands").append(container);
       }
+      var actualInputTitleContainer = container.append("<div class='actual-input-title-container' id='actualInputTitleContainer'>");
+      var actualInputText1 = actualInputTitleContainer.append("<p class='actual-input-text'>실입력</p>");
+      var actualInputText2 = actualInputTitleContainer.append("<span class='actual-input-text'>(</span>");
+      var actualInputButtonContainer = actualInputTitleContainer.append("<span class='actual-input-button' id='inputTarget'></span>");
+      var actualInputText3 = actualInputTitleContainer.append("<span class='actual-input-text'>)</span>");
+      var inputResultButtonContainer = actualInputTitleContainer.append("<span class='input-result-button-container' id='inputTarget'></span>");
+
+      actualInputText1.css("font-size", "10px");
+
+      container.click(function() {
+        this.remove(this);
+      });
     }
 
 
@@ -244,7 +248,9 @@
 
         btn.appendChild(spanTag);
       }
-      if(isModifingMode && cell == commands) { // 삽입모드일 때
+
+      // console.log("isModifingMode? " + isModifingMode + " cell? " + cell.id);
+      if(isModifingMode && cell == commands) { // 수정모드일 때
         $("#commands>*:not(.blink_cursor)").eq(afterElement++).after(btn);
       } else { // 일반모드일 때
         cell.appendChild(btn);
@@ -309,15 +315,6 @@
         enter();
       }
       input.focus();
-      input.click(function() {
-        input.remove();
-      });
-
-      // if(document.getElementById('commands').childNodes.length != 0) addTag(commands, 'br');
-      // var btn = addTag(commands, 'input', 'inputTitle');
-      // btn.focus();
-      // btn.onclick = function() { btn.parentNode.removeChild(btn); };
-      // addTag(commands, 'br');
     }
 
     function enter() {
@@ -385,7 +382,7 @@
 
     // 키 입력 체크
     document.body.addEventListener('keydown', function (e) {
-      if(document.activeElement.className == "input_title") return; // 글 삽입할 땐 단축키 동작 금지
+      if(document.activeElement.className == "input_title") return; // 글 수정할 땐 단축키 동작 금지
 
       if(e.keyCode == 32 || e.keyCode == 13) e.preventDefault(); // 이거 안 해놓으니까 버튼 클릭 후 스페이스 바 or 엔터 키를 누르면 포커스가 남아있어서 이전 버튼이 눌려짐
 //       alert(e.ke yCode);
