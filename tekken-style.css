@@ -21,6 +21,55 @@ button {
   cursor: pointer;
 }
 
+.popup-window-container {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 100;
+}
+
+.popup-window {
+  position: relative;
+  top: -50%;
+  left: -50%;
+  padding: 10px;
+  margin: 10px;
+  background: white;
+  border: none;
+  border-radius: 20px;
+  -webkit-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.75);
+}
+
+#popup-close-button {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.popup-image {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.popup-image canvas {
+  border: dashed 2px black;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+
 .minimize {
   display: none;
   position: relative;

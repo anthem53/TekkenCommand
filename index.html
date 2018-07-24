@@ -6,8 +6,24 @@
   <link rel="stylesheet" href="tekken-style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="./plug-in/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="./plug-in/html2canvas.js"></script>
 </head>
 <body id="body" onload="onLoadFunction();">
+  <div class="popup-window-container">
+    <div class="popup-window" id="canvas-window">
+      <div class="popup-title-container">
+        <button id="popup-close-button" onclick="$('.popup-window-container').css('display', 'none');">
+          X
+        </button>
+      </div>
+      <div class="popup-content">
+        <div>
+          <div class="popup-image"></div>
+          <span class="popup-info">위의 사진을 우클릭한 후 <strong>'다른 이름으로 저장하기'</strong>해서 사진을 저장하세요.</span>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="header" id="stickyHeader">
     <button class="minimize" id="minimize_button">
       ▲
@@ -71,6 +87,7 @@
           <button class="web_control_button" onclick="eraseAll();">전체 지움</button>
           <button class="web_control_button tooltip" onclick="erase();">지우기<span class="tooltip-text">지움<br>(단축키: 백스페이스/딜리트)</span></button>
           <button class="web_control_button tooltip" onclick="modifingMode();" id="modifingButton">수정 모드<span class="tooltip-text">중간에 버튼을 추가할 수 있습니다.</span></button>
+          <button class="web_control_button tooltip" onclick="makeShareImage();" id="imageDonwloadButton">이미지로 저장</button>
         </div>
       </div>
       <div class="hidden_header" id="hidden_header_id">
@@ -387,6 +404,17 @@
 
       $(".blink_cursor").remove();
       $("#commands>*:not(.blink_cursor)").eq(afterElement).after(blinkCursor);
+    }
+
+    function makeShareImage() {
+      $(".popup-image").empty();
+      $(".popup-window-container").css("display", "block");
+
+      html2canvas($("#commands"), {
+        onrendered: function(canvas) {
+          $(".popup-image").append(canvas);
+        }
+      });
     }
 
 
