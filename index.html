@@ -92,6 +92,7 @@
           <button class="web_control_button tooltip" onclick="erase();">지우기<span class="tooltip-text">지움<br>(단축키: 백스페이스/딜리트)</span></button>
           <button class="web_control_button tooltip" onclick="modifingMode();" id="modifingButton">수정 모드<span class="tooltip-text">중간에 버튼을 추가할 수 있습니다.</span></button>
           <button class="web_control_button tooltip" onclick="makeShareImage();" id="imageDonwloadButton">이미지로 저장</button>
+          <button class="web_control_button tooltip" onclick="makeShareURL();" id="shareURLButton">URL로 작성한 콤보 공유</button>
         </div>
       </div>
       <div class="hidden_header" id="hidden_header_id">
@@ -102,7 +103,9 @@
 
   <div id="result_cell">
     <p class="output_title" id="output_title_id">출력 창</p>
-    <div id="commands"></div>
+    <!-- <div id="commands"></div> -->
+    <!-- test 코드 -->
+    <div id="commands"><button class="cmd tooltip" id="w3" style="background-image: url(&quot;./images/w3.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="c3" style="background-image: url(&quot;./images/c3.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="misc_button no_background tooltip" id="m0">▶<span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="w6" style="background-image: url(&quot;./images/w6.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="c9" style="background-image: url(&quot;./images/c9.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="c9" style="background-image: url(&quot;./images/c9.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="c5" style="background-image: url(&quot;./images/c5.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="misc_button no_background tooltip" id="m0">▶<span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="w4" style="background-image: url(&quot;./images/w4.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="c9" style="background-image: url(&quot;./images/c9.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="c5" style="background-image: url(&quot;./images/c5.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="misc_button no_background tooltip" id="m0">▶<span class="tooltip-text">클릭하여 삭제</span></button><button class="misc_button tooltip" id="m7">스크류<span class="tooltip-text">클릭하여 삭제</span></button><button class="misc_button no_background tooltip" id="m0">▶<span class="tooltip-text">클릭하여 삭제</span></button><button class="misc_button tooltip" id="m8">대시<span class="tooltip-text">클릭하여 삭제</span></button><button class="misc_button no_background tooltip" id="m0">▶<span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="c5" style="background-image: url(&quot;./images/c5.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="c2" style="background-image: url(&quot;./images/c2.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button><button class="cmd tooltip" id="c3" style="background-image: url(&quot;./images/c3.png&quot;);"><span class="tooltip-text">클릭하여 삭제</span></button></div>
   </div>
 
   <div class="arrow-div">
@@ -148,60 +151,58 @@
 
     // 방향키 순서가 7 8 9 / 4 5 6 / 1 2 3 이렇게 되어 있어서 for문 한 개로 하면 오히려 복잡해짐
     // 흰 방향키
-    addImageButton(whiteCell, "./images/w7.png", "cmd tooltip", null, null, "레버 7\n(단축키: 키패드 7)");
-    addImageButton(whiteCell, "./images/w8.png", "cmd tooltip", null, null, "레버 8\n(단축키: 키패드 8)");
-    addImageButton(whiteCell, "./images/w9.png", "cmd tooltip", null, null, "레버 9\n(단축키: 키패드 9)");
-    addImageButton(whiteCell, "./images/w4.png", "cmd tooltip", null, null, "레버 4\n(단축키: 키패드 4)");
-    addImageButton(whiteCell, "./images/n.png", "cmd tooltip", null, null, "레버 5\n(단축키: 키패드 5)");
-    addImageButton(whiteCell, "./images/w6.png", "cmd tooltip", null, null, "레버 6\n(단축키: 키패드 6)");
-    addImageButton(whiteCell, "./images/w1.png", "cmd tooltip", null, null, "레버 1\n(단축키: 키패드 1)");
-    addImageButton(whiteCell, "./images/w2.png", "cmd tooltip", null, null, "레버 2\n(단축키: 키패드 2)");
-    addImageButton(whiteCell, "./images/w3.png", "cmd tooltip", null, null, "레버 3\n(단축키: 키패드 3)");
+    addImageButton(whiteCell, "./images/w7.png", "cmd tooltip", "w7", null, "레버 7\n(단축키: 키패드 7)");
+    addImageButton(whiteCell, "./images/w8.png", "cmd tooltip", "w8", null, "레버 8\n(단축키: 키패드 8)");
+    addImageButton(whiteCell, "./images/w9.png", "cmd tooltip", "w9", null, "레버 9\n(단축키: 키패드 9)");
+    addImageButton(whiteCell, "./images/w4.png", "cmd tooltip", "w4", null, "레버 4\n(단축키: 키패드 4)");
+    addImageButton(whiteCell, "./images/n.png", "cmd tooltip", "n", null, "레버 5\n(단축키: 키패드 5)");
+    addImageButton(whiteCell, "./images/w6.png", "cmd tooltip", "w6", null, "레버 6\n(단축키: 키패드 6)");
+    addImageButton(whiteCell, "./images/w1.png", "cmd tooltip", "w1", null, "레버 1\n(단축키: 키패드 1)");
+    addImageButton(whiteCell, "./images/w2.png", "cmd tooltip", "w2", null, "레버 2\n(단축키: 키패드 2)");
+    addImageButton(whiteCell, "./images/w3.png", "cmd tooltip", "w3", null, "레버 3\n(단축키: 키패드 3)");
 
     // 검은 방향키
-    addImageButton(blackCell, "./images/b7.png", "cmd tooltip", null, null, "레버 7 유지");
-    addImageButton(blackCell, "./images/b8.png", "cmd tooltip", null, null, "레버 8 유지");
-    addImageButton(blackCell, "./images/b9.png", "cmd tooltip", null, null, "레버 9 유지");
-    addImageButton(blackCell, "./images/b4.png", "cmd tooltip", null, null, "레버 4 유지");
-    addImageButton(blackCell, "./images/n.png", "cmd tooltip", null, null, "레버 5 유지");
-    addImageButton(blackCell, "./images/b6.png", "cmd tooltip", null, null, "레버 6 유지");
-    addImageButton(blackCell, "./images/b1.png", "cmd tooltip", null, null, "레버 1 유지");
-    addImageButton(blackCell, "./images/b2.png", "cmd tooltip", null, null, "레버 2 유지");
-    addImageButton(blackCell, "./images/b3.png", "cmd tooltip", null, null, "레버 3 유지");
+    addImageButton(blackCell, "./images/b7.png", "cmd tooltip", "b7", null, "레버 7 유지");
+    addImageButton(blackCell, "./images/b8.png", "cmd tooltip", "b8", null, "레버 8 유지");
+    addImageButton(blackCell, "./images/b9.png", "cmd tooltip", "b9", null, "레버 9 유지");
+    addImageButton(blackCell, "./images/b4.png", "cmd tooltip", "b4", null, "레버 4 유지");
+    addImageButton(blackCell, "./images/n.png", "cmd tooltip", "n", null, "레버 5 유지");
+    addImageButton(blackCell, "./images/b6.png", "cmd tooltip", "b6", null, "레버 6 유지");
+    addImageButton(blackCell, "./images/b1.png", "cmd tooltip", "b1", null, "레버 1 유지");
+    addImageButton(blackCell, "./images/b2.png", "cmd tooltip", "b2", null, "레버 2 유지");
+    addImageButton(blackCell, "./images/b3.png", "cmd tooltip", "b3", null, "레버 3 유지");
 
     // 스틱 버튼
-    addImageButton(command1, "./images/c2.png", "cmd tooltip", null, null, "왼손\n(단축키: q)");
-    addImageButton(command1, "./images/c3.png", "cmd tooltip", null, null, "오른손\n(단축키: w)");
-    addImageButton(command1, "./images/c5.png", "cmd tooltip", null, null, "왼발\n(단축키: a)");
-    addImageButton(command1, "./images/c9.png", "cmd tooltip", null, null, "오른발\n(단축키: s)");
-    addImageButton(command2, "./images/c6.png", "cmd tooltip", null, null, "왼손+왼발");
-    addImageButton(command2, "./images/c11.png", "cmd tooltip", null, null, "오른손+오른발");
-    addImageButton(command2, "./images/c4.png", "cmd tooltip", null, null, "양손");
-    addImageButton(command2, "./images/c13.png", "cmd tooltip", null, null, "양발");
-    addImageButton(command2, "./images/c10.png", "cmd tooltip", null, null, "왼손+오른발");
-    addImageButton(command2, "./images/c8.png", "cmd tooltip", null, null, "왼손+오른손+왼발");
-    addImageButton(command2, "./images/c12.png", "cmd tooltip", null, null, "왼손+오른손+오른발");
-    addImageButton(command2, "./images/c14.png", "cmd tooltip", null, null, "왼손+왼발+오른발");
-  	addImageButton(command2, "./images/c15.png", "cmd tooltip", null, null, "오른손+왼발+오른발");
-  	addImageButton(command2, "./images/c16.png", "cmd tooltip", null, null, "왼손+오른손+왼발+오른발");
+    addImageButton(command1, "./images/c2.png", "cmd tooltip", "c2", null, "왼손\n(단축키: q)");
+    addImageButton(command1, "./images/c3.png", "cmd tooltip", "c3", null, "오른손\n(단축키: w)");
+    addImageButton(command1, "./images/c5.png", "cmd tooltip", "c5", null, "왼발\n(단축키: a)");
+    addImageButton(command1, "./images/c9.png", "cmd tooltip", "c9", null, "오른발\n(단축키: s)");
+    addImageButton(command2, "./images/c6.png", "cmd tooltip", "c6", null, "왼손+왼발");
+    addImageButton(command2, "./images/c11.png", "cmd tooltip", "c11", null, "오른손+오른발");
+    addImageButton(command2, "./images/c4.png", "cmd tooltip", "c4", null, "양손");
+    addImageButton(command2, "./images/c13.png", "cmd tooltip", "c13", null, "양발");
+    addImageButton(command2, "./images/c10.png", "cmd tooltip", "c10", null, "왼손+오른발");
+    addImageButton(command2, "./images/c8.png", "cmd tooltip", "c8", null, "왼손+오른손+왼발");
+    addImageButton(command2, "./images/c12.png", "cmd tooltip", "c12", null, "왼손+오른손+오른발");
+    addImageButton(command2, "./images/c14.png", "cmd tooltip", "c14", null, "왼손+왼발+오른발");
+  	addImageButton(command2, "./images/c15.png", "cmd tooltip", "c15", null, "오른손+왼발+오른발");
+  	addImageButton(command2, "./images/c16.png", "cmd tooltip", "c16", null, "왼손+오른손+왼발+오른발");
 
     // 기타 버튼
-    addImageButton(miscCell, null, "misc_button no_background tooltip", null, "▶", "다음\n(단축키: 스페이스바)").style.display = "inline-block";
-    addImageButton(miscCell, null, "misc_button no_background tooltip", "justInput", "와 동시에 ", "동시 입력");
+    addImageButton(miscCell, null, "misc_button no_background tooltip", null, "▶", "다음\n(단축키: 스페이스바)");
+    addImageButton(miscCell, null, "misc_button no_background tooltip justInput", null, "와 동시에 ", "동시 입력");
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "~", "계속 유지");
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "[", "빠르게 연속 입력");
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "]", "빠르게 연속 입력");
     var accrueButton = addImageButton(miscCell, null, "misc_button no_background tooltip", null, "(누적)", "버튼을 누른 채 떼지 않고 유지");
     var actualInput = addImageButton(miscCell, null, "misc_button no_background tooltip", null, "(실입력)", "누적을 적용하여 철권에서 인식하는 실제 입력");
 //     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "_", "잠시 유지");
-
     // 기타 버튼 2
     var miscList = ["스크류", "대시", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "흘리기", "횡캔슬", "횡신", "횡보", "바운드", "태그"];
     for (var i in miscList) {
       var btn = addImageButton(miscCell, null, "misc_button tooltip", null, miscList[i], null);
       i == 0 || i == 1 ? btn.style.display = "inline-block" : null;
     }
-
     // 펼치기 버튼(기타 셀)
     addImageButton(miscCell, null, "expand tooltip", null, "+", "펼치기").onclick = function() {
       if(this.innerText == "+펼치기" || this.innerText == "+") { // 숨겨진 상태
@@ -287,8 +288,13 @@
         cell.appendChild(btn);
       }
 
+      // misc 버튼들 번호 매기기 (makeShareURL을 위해)
+      if(cell == miscCell) {
+        btn.id = "m" + (miscCell.childElementCount - 1);
+      }
+
       btn.onclick = function() { // 버튼 클릭하면 result 셀에 복사
-        drawCommand(url, className, id, text);
+        drawCommand(url, className, btn.id, text); // 그냥 id를 넘기면 자바스크립트로 설정해놓은 id들이 넘어가지 않는다.
       };
 
       return btn;
@@ -439,6 +445,47 @@
         });
     }
 
+    function makeShareURL() {
+      var commandsChildren = $("#commands>*:not(.blink_cursor)");
+      var params = "params=";
+
+      for(var i in commandsChildren) {
+        params += branchCommands(commandsChildren[i]);
+      }
+
+      alert(params);
+    }
+
+    function branchCommands(element) {
+      if(typeof element == "object") { // encode
+        // console.log(element.nodeName);
+        if(element.nodeName == "BUTTON") {
+          console.log("버튼 감지");
+          return element.id;
+        } else if(element.nodeName == "br") {
+          console.log("br 감지");
+          return "br";
+        } else if(element.nodeName == "span") {
+          if(element.className.includes("accrue-container")) {
+            console.log("누적 감지");
+            return "accrue";
+          } else if(element.className.includes("actual-input-container")) {
+            console.log("실입력 감지");
+            return "actual";
+          }
+        } else if(element.nodeName == "input") {
+          console.log("글 감지");
+          return "input" + "|" + element.innerText;
+        } else {
+          console.log("감지 실패" + element.nodeName);
+          return null;
+        }
+
+      } else if(typeof element == "string") { // decode
+
+      }
+    }
+
 
 
     // 키 입력 체크
@@ -451,65 +498,64 @@
       var url;
       switch(e.keyCode) {
         case 97: // 키패드 1
-          url = "./images/w1.png";
+          $("#stickyHeader #w1").click();
           break;
         case 98: // 키패드 2
-          url = "./images/w2.png";
+          $("#stickyHeader #w2").click();
           break;
         case 99: // 키패드 3
-          url = "./images/w3.png";
+          $("#stickyHeader #w3").click();
           break;
         case 100: // 키패드 4
-          url = "./images/w4.png";
+          $("#stickyHeader #w4").click();
           break;
         case 101: // 키패드 5
-          url = "./images/n.png";
+          $("#stickyHeader #n").click();
           break;
         case 102: // 키패드 6
-          url = "./images/w6.png";
+          $("#stickyHeader #w6").click();
           break;
         case 103: // 키패드 7
-          url = "./images/w7.png";
+          $("#stickyHeader #w7").click();
           break;
         case 104: // 키패드 8
-          url = "./images/w8.png";
+          $("#stickyHeader #w8").click();
           break;
         case 105: // 키패드 9
-          url = "./images/w9.png";
+          $("#stickyHeader #w9").click();
           break;
         case 81: // Q
-          url = "./images/c2.png";
+          $("#stickyHeader #c2").click();
           break;
         case 87: // W
-          url = "./images/c3.png";
+          $("#stickyHeader #c3").click();
           break;
         case 65: // A
-          url = "./images/c5.png";
+          $("#stickyHeader #c5").click();
           break;
         case 83: // S
-          url = "./images/c9.png";
+          $("#stickyHeader #c9").click();
           break;
         case 32: // 스페이스바
-          addImageButton(commands, null, "misc_button no_background tooltip", null, "▶", "클릭하여 삭제").onclick = function() { this.parentNode.removeChild(this); };
-          return false;
+          $("#stickyHeader #m0").click();
+          // addImageButton(commands, null, "misc_button no_background tooltip", null, "▶", "클릭하여 삭제").onclick = function() { this.parentNode.removeChild(this); };
+          break;
         case 13: // 엔터
           enter();
-          return;
+          break;
         case 37: // 왼쪽 방향키
           moveCursor("left");
-          return;
+          break;
         case 39: // 오른쪽 방향키
           moveCursor("right");
-          return;
+          break;
         case 8: // 백스페이스
         case 46: // 딜리트
           erase();
-          return;
+          break;
         default:
           return;
       }
-
-      drawCommand(url, "cmd tooltip", null, null, "클릭하여 삭제");
     });
   </script>
 </body>
