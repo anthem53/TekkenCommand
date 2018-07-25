@@ -449,7 +449,9 @@
       var commandsChildren = $("#commands>*:not(.blink_cursor)");
       var params = "params=";
 
-      for(var i in commandsChildren) {
+      // console.log(commandsChildren.length);
+      for(var i = 0; i < commandsChildren.length; i++) {
+        // console.log(i);
         params += branchCommands(commandsChildren[i]);
       }
 
