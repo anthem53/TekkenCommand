@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="tekken-style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="./plug-in/jquery-3.3.1.js"></script>
-  <script type="text/javascript" src="./plug-in/html2canvas.js"></script>
+  <script type="text/javascript" src="./plug-in/html2canvas-0.4.1.js"></script>
 </head>
 <body id="body" onload="onLoadFunction();">
   <div class="popup-window-container">
@@ -414,29 +414,29 @@
       $(".popup-image").empty();
       $(".popup-window-container").css("display", "block");
 
-      // html2canvas($("#commands"), {
-      //   onrendered: function(canvas) {
-      //     $(".popup-image").append(canvas);
-
-      //     $("#commands").append($("<a id='temp'></a>"));
-      //     $("#temp").attr("href", canvas.toDataURL());
-      //     $("#temp").attr("download", "image.png");
-      //     $("#temp")[0].click();
-      //   }
-      // });
-
-      html2canvas($("#commands")[0], {
-        allowTaint: true,
-        useCORS: true,
-        logging: true
-      }).then(function(canvas) {
+      html2canvas($("#commands"), {
+        onrendered: function(canvas) {
           $(".popup-image").append(canvas);
 
           $("#commands").append($("<a id='temp'></a>"));
           $("#temp").attr("href", canvas.toDataURL());
           $("#temp").attr("download", "image.png");
           $("#temp")[0].click();
-        });
+        }
+      });
+
+      // html2canvas($("#commands")[0], {
+      //   allowTaint: true,
+      //   useCORS: true,
+      //   logging: true
+      // }).then(function(canvas) {
+      //     $(".popup-image").append(canvas);
+
+      //     $("#commands").append($("<a id='temp'></a>"));
+      //     $("#temp").attr("href", canvas.toDataURL());
+      //     $("#temp").attr("download", "image.png");
+      //     $("#temp")[0].click();
+      //   });
     }
 
 
