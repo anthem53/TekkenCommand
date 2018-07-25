@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Nanum+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+@font-face {
+  font-family: 'Do Hyeon'; 
+  src: url(./fonts/DoHyeon.ttf) format('truetype');
+}
 
 :root {
   --bg-color: #F0F3BD;
@@ -47,6 +51,7 @@ button {
   border-radius: 20px 20px 0 0;
   padding: 10px;
   margin: 0;
+  height: 30px;
   text-align: right;
   background: #1C1A21;
 }
@@ -76,6 +81,7 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   padding: 10px;
   min-height: 200px;
 }
@@ -96,6 +102,7 @@ button {
 #popup-info-text {
   text-align: center;
   display: inline-block;
+  margin: initial auto;
 }
 
 #popup-info-button {
@@ -114,11 +121,22 @@ button {
   cursor: help;
 }
 
+.tooltip:hover #popup-tooltip-text {
+  visibility: visible;
+}
+
 #popup-tooltip-text {
+  visibility: hidden;
   background: none;
   position: relative;
-  bottom: 50%;
-  left: -50%;
+  left: calc(-1 * 780px / 2); /* 움짤 가로 길이가 780px */
+  top: calc(-1 * (310px + 20px)); /* 움짤 가로 길이가 310px + 여백 20px */
+  max-width: 90vw;
+}
+
+#popup-tooltip-text img {
+  border: solid black 2px;
+  border-radius: 10px;
 }
 
 
@@ -383,7 +401,7 @@ button {
 
 .input_title {
   display: block;
-  width: calc(100vw - 20px); /* 화면 전체 크기에서 result_cell 여백만큼 빼기 (좌우 각 10px씩) */
+  width: calc(100vw - 20px - 60px); /* 화면 전체 크기에서 result_cell 여백 + commands 여백만큼 빼기 (좌우 각 10px, 20px씩) */
   font-family: 'Do Hyeon', sans-serif;
   background: none;
   border: none;
@@ -393,7 +411,6 @@ button {
 }
 
 .input_title:focus {
-  font-family: sans-serif;
   background: white;
   border: dashed 2px black;
 }
@@ -591,6 +608,10 @@ button {
 
 /* 반응형 웹 */
 @media(max-width: 1080px) {
+  #popup-info-button {
+    display: none;
+  }
+
   #white_cell {
     border-radius: 20px 20px 0 0;
   }
