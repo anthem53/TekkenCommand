@@ -329,7 +329,7 @@ button {
   vertical-align: bottom;
 }
 
-.blink_cursor {
+#blink-cursor {
   display: inline-block;
   position: relative;
   height: var(--commands-button-size);
@@ -388,7 +388,7 @@ button {
   font-weight: initial;
 }
 
-#justInput {
+.justInput {
   margin-left: 0;
   margin-right: 0;
 }
