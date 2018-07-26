@@ -233,8 +233,10 @@
 //     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "_", "잠시 유지");
     
     // 기타 버튼 2
+    addImageButton(miscCell, null, "misc_button tooltip", null, "스크류", "(단축키: r)");
+    addImageButton(miscCell, null, "misc_button tooltip", null, "대시", "(단축키: d)");
     var miscList = [
-      "스크류", "대시", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "흘리기", "횡캔슬", "횡신", "횡보", "반시계 횡", "시계 횡", "낙법", "뒤돌아", "역가드", "딜레이", "바운드", "태그"
+      "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "흘리기", "횡캔슬", "횡신", "횡보", "반시계 횡", "시계 횡", "낙법", "뒤돌아", "역가드", "딜레이", "바운드", "태그"
     ];
     for (var i in miscList) {
       var btn = addImageButton(miscCell, null, "misc_button tooltip", null, miscList[i], null);
@@ -610,10 +612,22 @@
         case 46: // 딜리트
           erase();
           break;
+        case 82:
+          $("#stickyHeader #m7").click();
+          break;
+        case 68:
+          $("#stickyHeader #m8").click();
+          break;
         default:
           return;
       }
     });
+
+    // 디버깅 코드
+    if($("#stickyHeader #m0")[0].childNodes[0].nodeValue != "▶") alert("▶ id가 m0이 아닙니다. 디버깅 해주시기 바랍니다.");
+    if($("#stickyHeader #m7")[0].childNodes[0].nodeValue != "스크류") alert("스크류 id가 m7이 아닙니다. 디버깅 해주시기 바랍니다.");
+    if($("#stickyHeader #m8")[0].childNodes[0].nodeValue != "대시") alert("대시 id가 m8이 아닙니다. 디버깅 해주시기 바랍니다.");
+
   </script>
 </body>
 </html>
