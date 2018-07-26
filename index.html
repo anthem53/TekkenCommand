@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="./plug-in/jquery-3.3.1.js"></script>
   <script type="text/javascript" src="./plug-in/html2canvas-0.4.1.js"></script>
+  <link rel="shortcut icon" href="favicon.ico">
 </head>
 <body id="body" onload="onLoadFunction();">
   <div class="popup-window-container">
@@ -302,6 +303,13 @@
 
     function drawCommand(url, className, id, text) {
       var target = document.getElementById("inputTarget") == null ? commands : document.getElementById("inputTarget"); // 누적. 실입력 버튼 구현을 위함
+
+      if(target.id == "inputTarget") { // 누적, 실입력에 엉뚱한 버튼이 들어가는 현상 방지
+        if(!$("#" + id).parent().hasClass("command_cell_div")) {
+          alert("누적 혹은 실입력에는 손, 발 커맨드 버튼만 입력할 수 있습니다.");
+          return;
+        }
+      }
 
       var copy = addImageButton(target, url, className, id, text, "클릭하여 삭제");
       copy.onclick = function() { 
