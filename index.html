@@ -93,7 +93,7 @@
           <button class="web_control_button tooltip" onclick="erase();">지우기<span class="tooltip-text">지움<br>(단축키: 백스페이스/딜리트)</span></button>
           <button class="web_control_button tooltip" onclick="modifingMode();" id="modifingButton">수정 모드<span class="tooltip-text">중간에 버튼을 추가할 수 있습니다.</span></button>
           <button class="web_control_button tooltip" onclick="makeShareImage();" id="imageDonwloadButton">이미지로 저장</button>
-          <button class="web_control_button tooltip" onclick="makeShareURL();" id="shareURLButton">URL로 작성한 콤보 공유</button>
+          <button class="web_control_button tooltip" onclick="makeShareURL();" id="shareURLButton">공유 URL 생성</button>
         </div>
       </div>
       <div class="hidden_header" id="hidden_header_id">
@@ -195,41 +195,7 @@
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "~", "계속 유지");
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "[", "빠르게 연속 입력");
     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "]", "빠르게 연속 입력");
-    var accrueButton = addImageButton(miscCell, null, "misc_button no_background tooltip", null, "(누적)", "버튼을 누른 채 떼지 않고 유지");
-    var actualInput = addImageButton(miscCell, null, "misc_button no_background tooltip", null, "(실입력)", "누적을 적용하여 철권에서 인식하는 실제 입력");
-//     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "_", "잠시 유지");
-    // 기타 버튼 2
-    var miscList = ["스크류", "대시", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "흘리기", "횡캔슬", "횡신", "횡보", "딜레이", "바운드", "태그"];
-    for (var i in miscList) {
-      var btn = addImageButton(miscCell, null, "misc_button tooltip", null, miscList[i], null);
-      i == 0 || i == 1 ? btn.style.display = "inline-block" : null;
-    }
-    // 펼치기 버튼(기타 셀)
-    addImageButton(miscCell, null, "expand tooltip", null, "+", "펼치기").onclick = function() {
-      if(this.innerText == "+펼치기" || this.innerText == "+") { // 숨겨진 상태
-        $('.misc_button').addClass("show");
-
-        this.innerText = "-";
-        var spanTag = document.createElement("span");
-        spanTag.className = "tooltip-text";
-        spanTag.innerText = "숨기기";
-
-        this.appendChild(spanTag);
-      } else { // 펼쳐진 상태
-        $('.misc_button').removeClass("show");
-
-        this.innerText = "+";
-        var spanTag = document.createElement("span");
-        spanTag.className = "tooltip-text";
-        spanTag.innerText = "펼치기";
-
-        this.appendChild(spanTag);
-      }
-    };
-
-
-    // 누적 버튼 구현
-    accrueButton.onclick = function() {
+    addImageButton(miscCell, null, "misc_button no_background tooltip", null, "(누적)", "버튼을 누른 채 떼지 않고 유지", function() {
       var container = $("<span class='accrue-container'></span>");
       if(isModifingMode) { // 수정모드일 때
         $("#commands>*:not(#blink-cursor)").eq(afterElement++).after(container);
@@ -242,10 +208,8 @@
       container.click(function() {
         this.remove();
       });
-    }
-
-    // 실입력 버튼 구현
-    actualInput.onclick = function() {
+    });
+    addImageButton(miscCell, null, "misc_button no_background tooltip", null, "(실입력)", "누적을 적용하여 철권에서 인식하는 실제 입력", function() {
       var container = $("<span class='actual-input-container'></span>");
       if(isModifingMode) { // 수정모드일 때
         $("#commands>*:not(#blink-cursor)").eq(afterElement++).after(container);
@@ -265,10 +229,49 @@
       container.click(function() {
         this.remove(this);
       });
+    });
+//     addImageButton(miscCell, null, "misc_button no_background tooltip", null, "_", "잠시 유지");
+    
+    // 기타 버튼 2
+    var miscList = [
+      "스크류", "대시", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "흘리기", "횡캔슬", "횡신", "횡보", "반시계 횡", "시계 횡", "낙법", "뒤돌아", "역가드", "딜레이", "바운드", "태그"
+    ];
+    for (var i in miscList) {
+      var btn = addImageButton(miscCell, null, "misc_button tooltip", null, miscList[i], null);
+      i == 0 || i == 1 ? btn.style.display = "inline-block" : null;
     }
+    // (직접 추가) 버튼
+    addImageButton(miscCell, null, "misc_button tooltip", "add-in-person", "(직접 추가)", "버튼을 추가합니다.", function() {
+      var text = prompt("원하는 문구를 넣어 직접 버튼을 추가할 수 있습니다.\n예) 특수자세, 왼플라밍고, 웨이브 등");
+      if(text !=  null) {
+        drawCommand(null, "misc_button tooltip", "add-in-person", text);
+      }
+    });
+    // 펼치기 버튼(기타 셀)
+    addImageButton(miscCell, null, "expand tooltip", null, "+", "펼치기", function() {
+      if(this.innerText == "+펼치기" || this.innerText == "+") { // 숨겨진 상태
+        $('.misc_button').addClass("show");
+
+        this.innerText = "-";
+        var spanTag = document.createElement("span");
+        spanTag.className = "tooltip-text";
+        spanTag.innerText = "숨기기";
+
+        this.appendChild(spanTag);
+      } else { // 펼쳐진 상태
+        $('.misc_button').removeClass("show");
+
+        this.innerText = "+";
+        var spanTag = document.createElement("span");
+        spanTag.className = "tooltip-text";
+        spanTag.innerText = "펼치기";
+
+        this.appendChild(spanTag);
+      }
+    });
 
 
-    function addImageButton(cell, url, className, id, text, tooltip) {
+    function addImageButton(cell, url, className, id, text, tooltip, clickFunction) {
       var btn = document.createElement("button");
       if(className != null) btn.className = className;
       if(url != null) btn.style.backgroundImage = "url('" + url + "')";
@@ -294,15 +297,19 @@
         btn.id = "m" + (miscCell.childElementCount - 1);
       }
 
-      btn.onclick = function() { // 버튼 클릭하면 result 셀에 복사
-        drawCommand(url, className, btn.id, text); // 그냥 id를 넘기면 자바스크립트로 설정해놓은 id들이 넘어가지 않는다.
-      };
+      if(clickFunction == null) {
+        btn.onclick = function() { // 버튼 클릭하면 result 셀에 복사
+          drawCommand(url, className, btn.id, text); // 그냥 id를 넘기면 자바스크립트로 설정해놓은 id들이 넘어가지 않는다.
+        };
+      } else {
+        btn.onclick = clickFunction;
+      }
 
       return btn;
     }
 
     function drawCommand(url, className, id, text) {
-      var target = document.getElementById("inputTarget") == null ? commands : document.getElementById("inputTarget"); // 누적. 실입력 버튼 구현을 위함
+      var target = document.getElementById("inputTarget") == null ? commands : document.getElementById("inputTarget"); // 누적, 실입력 버튼 구현을 위함
 
       if(target.id == "inputTarget") { // 누적, 실입력에 엉뚱한 버튼이 들어가는 현상 방지
         if(!$("#" + id).parent().hasClass("command_cell_div")) {
