@@ -386,7 +386,8 @@
     }
 
     function eraseAll() {
-      $("#commands").text("");
+      window.open(location.protocol + '//' + location.host + location.pathname, "_self");
+      // $("#commands").text("");
     }
 
     function erase() {
