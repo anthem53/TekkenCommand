@@ -508,7 +508,11 @@
     function branchCommands(element) {
       if(jQuery.type(element) == "object") { // encode
         if($(element).is("button")) {
-          return $(element)[0].id;
+          if($(element)[0].id === "add-in-person") {
+            return "add\\" + getTextOnly($(element));
+          } else {
+            return $(element)[0].id;
+          }
         } else if($(element).is("br")) {
           return "br";
         } else if($(element).is("span")) {
@@ -533,6 +537,8 @@
           $("#m6").click();
           if(splitedElement[1] != "null") $("#" + splitedElement[1]).click();
           if(splitedElement[2] != "null") $("#" + splitedElement[2]).click();
+        } else if(splitedElement[0] == "add") {
+          drawCommand(null, "misc_button tooltip", "add-in-person", splitedElement[1]);
         } else if(splitedElement[0] == "input") {
           $("#commands").append($("<input class='input_title'>").val(decodeURI(splitedElement[1])));
         } else if(splitedElement[0] == "null") {
@@ -543,6 +549,15 @@
           $("#" + splitedElement[0]).click();
         }
       }
+    }
+
+    function getTextOnly(element) { // inner tags는 제외하고 순수 텍스트 내용만 가져오는 함수
+     return $(element)
+        .clone()    //clone the element
+        .children() //select all the children
+        .remove()   //remove all the children
+        .end()  //again go back to selected element
+        .text();
     }
 
 
