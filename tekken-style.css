@@ -250,7 +250,7 @@ button {
 
 #command_cell #command_cell_content #command_cell_div2 {
   display: grid;
-  grid-template-columns: repeat(5, var(--commands-button-size));
+  grid-template-columns: repeat(6, var(--commands-button-size));
 }
 
 #misc_cell {
