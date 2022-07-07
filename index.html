@@ -180,10 +180,10 @@
     addImageButton(command1, "./images/c9.png", "cmd tooltip", "c9", null, "오른발\n(단축키: s)");
     addImageButton(command2, "./images/c6.png", "cmd tooltip", "c6", null, "왼손+왼발");
     addImageButton(command2, "./images/c11.png", "cmd tooltip", "c11", null, "오른손+오른발");
-    addImageButton(command2, "./images/c4.png", "cmd tooltip", "c4", null, "양손");
-    addImageButton(command2, "./images/c13.png", "cmd tooltip", "c13", null, "양발");
-    addImageButton(command2, "./images/c10.png", "cmd tooltip", "c10", null, "왼손+오른발");
-    addImageButton(command2, "./images/c7.png", "cmd tooltip", "c7", null, "오른손+왼발");
+    addImageButton(command2, "./images/c4.png", "cmd tooltip", "c4", null, "양손\n(단축키: e)");
+    addImageButton(command2, "./images/c13.png", "cmd tooltip", "c13", null, "양발\n(단축키: d)");
+    addImageButton(command2, "./images/c10.png", "cmd tooltip", "c10", null, "왼손+오른발\n(단축키: x)");
+    addImageButton(command2, "./images/c7.png", "cmd tooltip", "c7", null, "오른손+왼발\n(단축키: z)");
     addImageButton(command2, "./images/c8.png", "cmd tooltip", "c8", null, "왼손+오른손+왼발");
     addImageButton(command2, "./images/c12.png", "cmd tooltip", "c12", null, "왼손+오른손+오른발");
     addImageButton(command2, "./images/c14.png", "cmd tooltip", "c14", null, "왼손+왼발+오른발");
@@ -237,7 +237,7 @@
     addImageButton(miscCell, null, "misc_button tooltip", null, "스크류", "(단축키: r)");
     addImageButton(miscCell, null, "misc_button tooltip", null, "대시", "(단축키: d)");
     var miscList = [
-      "S", "D", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "벽 바운드", "흘리기", "횡캔슬", "횡신", "횡보", "반시계 횡", "시계 횡", "낙법", "뒤돌아", "역가드", "딜레이", "바운드", "태그"
+      "S", "D", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "벽 바운드", "흘리기", "횡캔슬", "횡신", "횡보", "반시계 횡", "시계 횡", "낙법", "뒤돌아", "역가드", "딜레이", "바운드", "태그" , "이후 콤보"
     ];
     for (var i in miscList) {
       var btn = addImageButton(miscCell, null, "misc_button tooltip", null, miscList[i], null);
@@ -573,8 +573,14 @@
 
       var url;
       switch(e.keyCode) {
+        case 49: // 1
+          $("#stickyHeader #w1").click();
+          break;
         case 97: // 키패드 1
           $("#stickyHeader #w1").click();
+          break;
+        case 50: // 2
+          $("#stickyHeader #w2").click();
           break;
         case 98: // 키패드 2
           $("#stickyHeader #w2").click();
@@ -582,22 +588,46 @@
         case 99: // 키패드 3
           $("#stickyHeader #w3").click();
           break;
+        case 51: //  3
+          $("#stickyHeader #w3").click();
+          break;
         case 100: // 키패드 4
+          $("#stickyHeader #w4").click();
+          break;
+        case 52: //  4
           $("#stickyHeader #w4").click();
           break;
         case 101: // 키패드 5
           $("#stickyHeader #white_cell_content #n").click();
           break;
+        case 53: //  5
+          $("#stickyHeader #white_cell_content #n").click();
+          break;
+        case 78: //  n
+          $("#stickyHeader #white_cell_content #n").click();
+          break;
         case 102: // 키패드 6
+          $("#stickyHeader #w6").click();
+          break;
+        case 54: //  6
           $("#stickyHeader #w6").click();
           break;
         case 103: // 키패드 7
           $("#stickyHeader #w7").click();
           break;
+        case 55: //  7
+          $("#stickyHeader #w7").click();
+          break;
         case 104: // 키패드 8
           $("#stickyHeader #w8").click();
           break;
+        case 56: //  8
+          $("#stickyHeader #w8").click();
+          break;
         case 105: // 키패드 9
+          $("#stickyHeader #w9").click();
+          break;
+        case 57: //  9
           $("#stickyHeader #w9").click();
           break;
         case 81: // Q
@@ -612,6 +642,20 @@
         case 83: // S
           $("#stickyHeader #c9").click();
           break;
+        case 90: // Z
+          $("#stickyHeader #c7").click();
+          break;
+        case 88: // X
+          $("#stickyHeader #c10").click();
+          break;
+        case 69: // E
+          $("#stickyHeader #c4").click();
+          break;
+        case 68: // D
+          $("#stickyHeader #c13").click();
+          break;
+
+
         case 32: // 스페이스바
           $("#stickyHeader #m0").click();
           // addImageButton(commands, null, "misc_button no_background tooltip", null, "▶", "클릭하여 삭제").onclick = function() { this.parentNode.removeChild(this); };
@@ -629,10 +673,10 @@
         case 46: // 딜리트
           erase();
           break;
-        case 82:
+        case 82: //R
           $("#stickyHeader #m7").click();
           break;
-        case 68:
+        case 70: // F
           $("#stickyHeader #m8").click();
           break;
         default:
