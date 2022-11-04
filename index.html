@@ -449,29 +449,30 @@
       $("#commands>*:not(#blink-cursor)").eq(afterElement).after(blinkCursor);
     }
 
-    // function getFileName() {
-    //   var file_name_text = document.getElementById('file_name').value;
-    //   if (file_name_text.length < 1) {
-    //     file_name_text = "tekken-commands.png";
-    //   }
-    //   else { 
-    //     file_name_text = file_name_text + ".png"
-    //   }
+    function getFileName() {
+      var file_name_text = document.getElementById('file_name').value;
+      if (file_name_text.length < 1) {
+        file_name_text = "tekken-commands.png";
+      }
+      else { 
+        file_name_text = file_name_text + ".png"
+      }
 
-    //   return file_name_text
-    // }
+      return file_name_text
+    }
     function makeShareImage() {
       $(".popup-image").empty();
       $(".popup-window-container").css("display", "block");
 
-      
+      var newFilename = getFileName()
+      console.log(newFilename)
       html2canvas($("#commands"), {
         onrendered: function(canvas) {
   
           $(".popup-image").append(canvas);
           $("#commands").append($("<a id='temp'></a>"));
           $("#temp").attr("href", canvas.toDataURL());
-          $("#temp").attr("download", "tekken-commands.png");
+          $("#temp").attr("download", newFilename);
           $("#temp")[0].click();
           $("#temp").remove();
         }
