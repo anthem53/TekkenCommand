@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="text/javascript" src="./plug-in/jquery-3.3.1.js"></script>
   <script type="text/javascript" src="./plug-in/html2canvas-0.4.1.js"></script>
-  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="shortcut icon" href="pavicon.ico">
 </head>
 <body id="body" onload="onLoadFunction();">
   <div class="popup-window-container">
@@ -70,9 +70,13 @@
       </div>
       <div class="cell_parent" id="bg_color_cell">
         <p class="header_title">
-          배경색
+          저장될 파일 제목
         </p>
-        <div class="cell_child" id="bg_color_cell_content">
+        <div class="cell_child" >
+          <input type="search" id="file_name">
+
+        </div>
+        <!-- <div class="cell_child" id="bg_color_cell_content">
           <button class="bgColor" id="bgcolor" style="background-color: #F0F3BD;" onclick="document.documentElement.style.setProperty('--bg-color', '#F0F3BD');"></button>
           <button class="bgColor" id="yellowgreen" style="background-color: yellowgreen;" onclick="document.documentElement.style.setProperty('--bg-color', 'yellowgreen');"></button>
           <button class="bgColor" id="white" style="background-color: white;" onclick="document.documentElement.style.setProperty('--bg-color', 'white');"></button>
@@ -80,7 +84,7 @@
           <button class="bgColor" id="darkblue" style="background-color: darkblue;" onclick="document.documentElement.style.setProperty('--bg-color', 'darkblue');"></button>
           <button class="bgColor" id="gray" style="background-color: gray;" onclick="document.documentElement.style.setProperty('--bg-color', 'gray');"></button>
           <button class="bgColor" id="forestgreen" style="background-color: forestgreen;" onclick="document.documentElement.style.setProperty('--bg-color', 'forestgreen');"></button>
-        </div>
+        </div> -->
       </div>
       <div class="cell_parent" id="web_control_cell">
         <p class="header_title">
@@ -445,14 +449,26 @@
       $("#commands>*:not(#blink-cursor)").eq(afterElement).after(blinkCursor);
     }
 
+    // function getFileName() {
+    //   var file_name_text = document.getElementById('file_name').value;
+    //   if (file_name_text.length < 1) {
+    //     file_name_text = "tekken-commands.png";
+    //   }
+    //   else { 
+    //     file_name_text = file_name_text + ".png"
+    //   }
+
+    //   return file_name_text
+    // }
     function makeShareImage() {
       $(".popup-image").empty();
       $(".popup-window-container").css("display", "block");
 
+      
       html2canvas($("#commands"), {
         onrendered: function(canvas) {
+  
           $(".popup-image").append(canvas);
-
           $("#commands").append($("<a id='temp'></a>"));
           $("#temp").attr("href", canvas.toDataURL());
           $("#temp").attr("download", "tekken-commands.png");
