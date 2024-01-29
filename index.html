@@ -97,7 +97,6 @@
           <button class="web_control_button tooltip" onclick="modifingMode();" id="modifingButton">수정 모드<span class="tooltip-text">중간에 버튼을 추가할 수 있습니다.</span></button>
           <button class="web_control_button tooltip" onclick="makeShareImage();" id="imageDonwloadButton">이미지로 저장<span class="tooltip-text">이미지로 저장<br>(단축키: ~/ `)</span></button>
           <button class="web_control_button tooltip" onclick="makeShareURL();" id="shareURLButton">공유 URL 생성</button>
-          <button class="web_control_button tooltip" onclick="openGithubsite();" id="shareURLButton">개발자 깃허브 코드</button>
         </div>
       </div>
       <div class="hidden_header" id="hidden_header_id">
@@ -241,7 +240,8 @@
     addImageButton(miscCell, null, "misc_button tooltip", null, "스크류", "(단축키: r)");
     addImageButton(miscCell, null, "misc_button tooltip", null, "대시", "(단축키: d)");
     var miscList = [
-      "S", "D", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "벽 바운드", "흘리기", "횡캔슬", "횡신", "횡보", "반시계 횡", "시계 횡", "낙법", "뒤돌아", "역가드", "딜레이", "바운드", "태그" ,"세비지","이후 콤보"
+      "S", "D", "카운터", "벽꽝", "플로어 브레이크", "발코니 브레이크", "벽 브레이크", "레아", "레드", "일어나며", "앉은 상태에서", "앉으며", "벽 바운드", "흘리기", "횡캔슬", "횡신", "횡보", "반시계 횡", "시계 횡", "낙법", "뒤돌아", "역가드", "딜레이", "바운드", "태그", "히트 버스트", "HB", "히트 인게이저", "HE", "히트 버스트 캔슬", "HB Canceling", "히트 스매시", "HS", "히트 대시", "HD", "토네이도", "T"
+    
     ];
     for (var i in miscList) {
       var btn = addImageButton(miscCell, null, "misc_button tooltip", null, miscList[i], null);
@@ -679,7 +679,9 @@
         case 68: // D
           $("#stickyHeader #c13").click();
           break;
-
+        case 84: // T
+          $("#stickyHeader #m45").click();
+          break
 
         case 32: // 스페이스바
           $("#stickyHeader #m0").click();
@@ -699,7 +701,7 @@
           erase();
           break;
         case 82: //R
-          $("#stickyHeader #m9").click();
+          $("#stickyHeader #m45").click();
           break;
         case 70: // F
           $("#stickyHeader #m10").click();
